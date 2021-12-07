@@ -23,10 +23,12 @@ class CalendarPage extends StatelessWidget {
                 firstDay: model.firstDayOfMonth,
                 lastDay: model.lastDayOfMonth,
                 locale: Localizations.localeOf(context).languageCode,
-                weekendDays: const [DateTime.sunday],
+                // markerBuilderの大きさに合わせて調整してください
                 rowHeight: 70,
+                // 曜日文字の大きさに合わせて調整してください
+                // 日本語だとこのくらいで見切れなくなります
                 daysOfWeekHeight: 32,
-                availableGestures: AvailableGestures.none,
+                // 見た目をスッキリさせるためなのでなくても大丈夫です
                 headerStyle: const HeaderStyle(
                   titleCentered: true,
                   formatButtonVisible: false,
@@ -34,16 +36,16 @@ class CalendarPage extends StatelessWidget {
                   rightChevronVisible: false,
                 ),
                 calendarStyle: const CalendarStyle(
+                  // true（デフォルト）の場合は
+                  // todayBuilderが呼ばれるので設定しましょう
                   isTodayHighlighted: false,
-                  weekendTextStyle: TextStyle(color: Colors.red),
-                  holidayTextStyle: TextStyle(color: Colors.red),
                 ),
+                // カスタマイズ用の関数を渡してやりましょう
                 calendarBuilders: CalendarBuilders(
                   dowBuilder: customCalendarBuilders.daysOfWeekBuilder,
-                  selectedBuilder: customCalendarBuilders.selectedBuilder,
-                  disabledBuilder: customCalendarBuilders.outsideBuilder,
-                  outsideBuilder: customCalendarBuilders.outsideBuilder,
                   defaultBuilder: customCalendarBuilders.defaultBuilder,
+                  disabledBuilder: customCalendarBuilders.disabledBuilder,
+                  selectedBuilder: customCalendarBuilders.selectedBuilder,
                   markerBuilder: customCalendarBuilders.markerBuilder,
                 ),
                 eventLoader: model.fetchScheduleForDay,

@@ -57,8 +57,8 @@ class CustomCalendarBuilders {
     );
   }
 
-  /// 前31日や翌1日など当月以外の日付部分を生成する
-  Widget outsideBuilder(
+  /// 有効範囲（firstDay~lastDay）以外の日付部分を生成する
+  Widget disabledBuilder(
       BuildContext context, DateTime day, DateTime focusedDay) {
     return _CalendarCellTemplate(
       dayText: day.day.toString(),
@@ -67,7 +67,7 @@ class CustomCalendarBuilders {
     );
   }
 
-  /// タップで選んだ日付部分を生成する
+  /// 選択された日付部分を生成する
   Widget selectedBuilder(
       BuildContext context, DateTime day, DateTime focusedDay) {
     return _CalendarCellTemplate(
@@ -104,7 +104,7 @@ class CustomCalendarBuilders {
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(2, 24, 2, 4),
+      padding: const EdgeInsets.only(top: 24),
       child: Column(
         children: [
           _scheduleText(am),

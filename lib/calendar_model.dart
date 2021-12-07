@@ -24,7 +24,7 @@ class CalendarModel extends ChangeNotifier {
     final schedule = {
       '1': ['on', 'off'],
       '2': ['off', 'on'],
-      '3': ['on', 'off'],
+      '3': ['on', 'on'],
     };
     return schedule[dateTime.day.toString()] ?? [null, null];
   }
